@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>Database.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Database.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">rest</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.*</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">Database {</span>
+    <span class="s0">static </span><span class="s1">HashMap&lt;Integer</span><span class="s0">, </span><span class="s1">Person&gt; personMap = </span><span class="s0">new </span><span class="s1">HashMap&lt;&gt;()</span><span class="s0">;</span>
+    <span class="s0">static </span><span class="s1">ArrayList&lt;Integer&gt; keyList = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Integer&gt;()</span><span class="s0">;</span>
+
+
+    <span class="s0">public static void </span><span class="s1">create(String name</span><span class="s0">, </span><span class="s1">String surName</span><span class="s0">, </span><span class="s1">String telephone</span><span class="s0">, </span><span class="s1">String email</span><span class="s0">, </span><span class="s1">String image){</span>
+
+        <span class="s0">int </span><span class="s1">key = Integer.parseInt(telephone)</span><span class="s0">;</span>
+        <span class="s1">keyList.add(key)</span><span class="s0">;</span>
+        <span class="s1">personMap.put(key</span><span class="s0">,new </span><span class="s1">Person(name</span><span class="s0">, </span><span class="s1">surName</span><span class="s0">, </span><span class="s1">telephone</span><span class="s0">, </span><span class="s1">email</span><span class="s0">, </span><span class="s1">image))</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+
+    <span class="s0">public static void </span><span class="s1">read(){</span>
+        <span class="s0">for </span><span class="s1">(Integer integer : keyList) {</span>
+            <span class="s1">Person tempPerson = personMap.get(integer)</span><span class="s0">;</span>
+            <span class="s1">CreateCard.Card(tempPerson)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+
+    <span class="s0">public static void </span><span class="s1">update(){</span>
+        <span class="s1">Scanner updateScanKey = </span><span class="s0">new </span><span class="s1">Scanner(System.in)</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s2">&quot;Please enter the telephone number of the &quot; </span><span class="s1">+</span>
+                <span class="s2">&quot;contact you wish to update: &quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s0">int </span><span class="s1">updateKey = updateScanKey.nextInt()</span><span class="s0">;</span>
+        <span class="s1">Person toBeUpdated = personMap.get(updateKey)</span><span class="s0">;</span>
+        <span class="s1">Scanner updateScan = </span><span class="s0">new </span><span class="s1">Scanner(System.in)</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s2">&quot;Please enter the new information,&quot; </span><span class="s1">+</span>
+                <span class="s2">&quot; first name, last name, telephone number, email address, &quot; </span><span class="s1">+</span>
+                <span class="s2">&quot;image (separated by commas).&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">String lineUpd = updateScan.nextLine()</span><span class="s0">;</span>
+        <span class="s1">String[] listUpd = lineUpd.split(</span><span class="s2">&quot;[ ,]+&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s0">int </span><span class="s1">newKey = Integer.parseInt(listUpd[</span><span class="s3">2</span><span class="s1">])</span><span class="s0">;</span>
+        <span class="s0">if</span><span class="s1">(newKey!=updateKey){</span>
+            <span class="s1">delete(updateKey)</span><span class="s0">;</span>
+            <span class="s1">create(listUpd[</span><span class="s3">0</span><span class="s1">]</span><span class="s0">,</span><span class="s1">listUpd[</span><span class="s3">1</span><span class="s1">]</span><span class="s0">,</span><span class="s1">listUpd[</span><span class="s3">2</span><span class="s1">]</span><span class="s0">,</span><span class="s1">listUpd[</span><span class="s3">3</span><span class="s1">]</span><span class="s0">,</span><span class="s1">listUpd[</span><span class="s3">4</span><span class="s1">])</span><span class="s0">;</span>
+
+        <span class="s1">}</span>
+        <span class="s1">toBeUpdated.setName(listUpd[</span><span class="s3">0</span><span class="s1">])</span><span class="s0">;</span>
+        <span class="s1">toBeUpdated.setSurname(listUpd[</span><span class="s3">1</span><span class="s1">])</span><span class="s0">;</span>
+        <span class="s1">toBeUpdated.setEmail(listUpd[</span><span class="s3">3</span><span class="s1">])</span><span class="s0">;</span>
+        <span class="s1">toBeUpdated.setImage(listUpd[</span><span class="s3">4</span><span class="s1">])</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+
+    <span class="s0">public static void </span><span class="s1">delete(</span><span class="s0">int </span><span class="s1">keyToDelete){</span>
+        <span class="s1">personMap.remove(keyToDelete)</span><span class="s0">;</span>
+        <span class="s1">keyList.remove((Integer) keyToDelete)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+
+    <span class="s0">public static void </span><span class="s1">main(String[] args){</span>
+        <span class="s1">System.out.println(</span><span class="s2">&quot;Welcome to the business card database!&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s0">boolean </span><span class="s1">done = </span><span class="s0">false;</span>
+        <span class="s0">while </span><span class="s1">(!done){</span>
+            <span class="s1">Scanner scanner = </span><span class="s0">new </span><span class="s1">Scanner(System.in)</span><span class="s0">;</span>
+            <span class="s1">System.out.println(</span><span class="s2">&quot;Please type </span><span class="s0">\&quot;</span><span class="s2">create</span><span class="s0">\&quot; </span><span class="s2">to create, </span><span class="s0">\&quot;</span><span class="s2">read</span><span class="s0">\&quot; </span><span class="s2">to read, &quot; </span><span class="s1">+</span>
+                    <span class="s2">&quot;</span><span class="s0">\&quot;</span><span class="s2">update</span><span class="s0">\&quot; </span><span class="s2">to update, or </span><span class="s0">\&quot;</span><span class="s2">delete</span><span class="s0">\&quot; </span><span class="s2">to delete.&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">String input = scanner.nextLine()</span><span class="s0">;</span>
+            <span class="s0">if</span><span class="s1">(input.equals(</span><span class="s2">&quot;create&quot;</span><span class="s1">)){</span>
+                <span class="s1">Scanner scanCreate = </span><span class="s0">new </span><span class="s1">Scanner(System.in)</span><span class="s0">;</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Please type first name, last name, telephone number, &quot; </span><span class="s1">+</span>
+                        <span class="s2">&quot;email address, image (separated by commas).&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s1">String line = scanCreate.nextLine()</span><span class="s0">;</span>
+                <span class="s1">String[] list = line.split(</span><span class="s2">&quot;[ ,]+&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s1">create(list[</span><span class="s3">0</span><span class="s1">]</span><span class="s0">,</span><span class="s1">list[</span><span class="s3">1</span><span class="s1">]</span><span class="s0">,</span><span class="s1">list[</span><span class="s3">2</span><span class="s1">]</span><span class="s0">,</span><span class="s1">list[</span><span class="s3">3</span><span class="s1">]</span><span class="s0">,</span><span class="s1">list[</span><span class="s3">4</span><span class="s1">])</span><span class="s0">;</span>
+            <span class="s1">}</span>
+            <span class="s0">if</span><span class="s1">(input.equals(</span><span class="s2">&quot;read&quot;</span><span class="s1">)){</span>
+                <span class="s1">read()</span><span class="s0">;</span>
+                <span class="s1">}</span>
+            <span class="s0">if</span><span class="s1">(input.equals(</span><span class="s2">&quot;update&quot;</span><span class="s1">)){</span>
+                <span class="s1">update()</span><span class="s0">;</span>
+            <span class="s1">}</span>
+            <span class="s0">if</span><span class="s1">(input.equals(</span><span class="s2">&quot;delete&quot;</span><span class="s1">)){</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Please enter the telephone number of the person&quot; </span><span class="s1">+</span>
+                        <span class="s2">&quot;you wish to delete from the record: &quot;</span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s1">Scanner scanDelete = </span><span class="s0">new </span><span class="s1">Scanner(System.in)</span><span class="s0">;</span>
+                <span class="s0">int </span><span class="s1">keyToDelete = scanDelete.nextInt()</span><span class="s0">;</span>
+                <span class="s1">delete(keyToDelete)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
