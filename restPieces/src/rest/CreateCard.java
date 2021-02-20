@@ -1,5 +1,16 @@
 package rest;
 
+//**************************
+
+//Author: Olle Bergström Jonsson
+
+//Date: 2021-02-20
+
+//Run Database.java to initiate program.
+
+//**************************
+
+
 public class CreateCard {
     /**
      * Creates a 'business card' via print statements

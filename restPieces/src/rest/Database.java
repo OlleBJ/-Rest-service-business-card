@@ -2,6 +2,17 @@ package rest;
 import java.util.*;
 import java.util.ArrayList;
 
+//**************************
+
+//Author: Olle Bergström Jonsson
+
+//Date: 2021-02-20
+
+//Description: Class with main method for a program which resembles a REST service
+//Takes input from user to manipulate a database of business cards. Run Database.java to initiate program.
+
+//**************************
+
 /**
  * Creates a database from user input.
  * Stores input values as objects Persons and
