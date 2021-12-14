@@ -1,10 +1,10 @@
-#Kodprov
+#Codetest
 
-Ett Java projekt som utför liknande uppgifter som en rest tjänst. Skrivet i IntelliJ IDEA 2020.3.1(Ultimate Edition).
+A Java project that performs similar tasks as a restservice. Written in IntelliJ IDEA 2020.3.1 (Ultimate Edition).
 
-Instruktioner för att köra:
+Instructions for running:
 
-1. Öppna projektet i IntelliJ eller någon annan IDE
-2. Expandera mappen Kodprov/restPieces/src/rest/
-3. Kör filen Database.java
-4. Ange svar på frågorna som dyker upp i terminalen
+1. Open the project in IntelliJ or another IDE
+2. Expand the Code Sample / restPieces / src / rest / folder
+3. Run the Database.java file
+4. Enter answers to the questions that appear in the terminal
